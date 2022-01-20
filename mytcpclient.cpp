@@ -1,6 +1,7 @@
 #include "mytcpclient.h"
 #include <QDebug>
 #include <QCoreApplication>
+#include <iostream>
 
 MyTcpClient::MyTcpClient(int argc, char* argv[], QObject *parent) : QObject(parent)
 {
@@ -11,6 +12,8 @@ MyTcpClient::MyTcpClient(int argc, char* argv[], QObject *parent) : QObject(pare
     // Signal ->  Slot-Verbindung
     connect(m_socket, &QTcpSocket::connected, this, &MyTcpClient::connected);
     connect(m_socket, &QTcpSocket::readyRead, this, &MyTcpClient::readyRead);
+    // (betr. Objekt, Event-Name/Verweis, Parent wo Funktion drin, Memberfunktion)
+    // m_socket->connect(m_socket, &QTcpSocket::connected, this, &MyTcpClient::connected);
 
     m_socket->connectToHost(m_hostname, port); // TCP Connect
     if (!m_socket->waitForConnected(5000)) {

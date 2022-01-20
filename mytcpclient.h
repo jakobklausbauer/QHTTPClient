@@ -9,7 +9,7 @@ public:
     explicit MyTcpClient(int argc, char* argv[], QObject *parent = nullptr);
 
 public slots:
-    void connected();
+    void connected();   //müssen theoretisch nicht im Abschnitt "slots" sein
     void readyRead();
 
 private:
